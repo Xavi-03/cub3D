@@ -1,4 +1,4 @@
-#include "../includes/galloc.h"
+#include "../../includes/galloc.h"
 
 void	terminate(int exit_value)
 {
@@ -23,10 +23,7 @@ void	free_galloc(t_galloc *galloc)
 		temp_galloc = list_galloc;
 		list_galloc = list_galloc->next;
 		if (temp_galloc && temp_galloc->mem)
-		{
 			free(temp_galloc->mem);
-			temp_galloc->mem = NULL;
-		}
 		if (temp_galloc)
 			free(temp_galloc);
 	}
@@ -42,6 +39,8 @@ void	*add_galloc(void *mem)
 		l_galloc = mem;
 		return (mem);
 	}
+	while (l_galloc->next)
+		l_galloc = l_galloc->next;
 	if (!mem)
 		return (NULL);
 	n_galloc = malloc(sizeof(t_galloc));
@@ -96,6 +95,8 @@ void	*galloc(size_t size)
 		l_galloc = init_galloc();
 		return (l_galloc);
 	}
+	while (l_galloc->next)
+		l_galloc = l_galloc->next;
 	n_galloc = malloc(sizeof(t_galloc));
 	if (!n_galloc)
 		terminate(EXIT_FAILURE);
