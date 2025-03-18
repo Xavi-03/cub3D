@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../includes/get_next_line.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
-	char		*new_line;
-	t_list		*list;
-	t_list		*iteri;
+	static char		*buffer;
+	char			*new_line;
+	t_list_gnl		*list;
+	t_list_gnl		*iteri;
 
 	list = NULL;
 	if (BUFFER_SIZE < 1 || fd < 0)
@@ -25,7 +25,7 @@ char	*get_next_line(int fd)
 	if (buffer)
 		ft_addnode(&list, buffer);
 	iteri = list;
-	while (!iteri || !ft_strchr(iteri->text))
+	while (!iteri || !ft_strchr_gnl(iteri->text))
 	{
 		iteri = ft_addnode(&list, ft_reader(fd));
 		if (!iteri)
@@ -39,10 +39,10 @@ char	*get_next_line(int fd)
 	return (ft_trimmer(new_line));
 }
 
-char	*ft_injector(t_list **list, char **buffer)
+char	*ft_injector(t_list_gnl **list, char **buffer)
 {
-	char	*new_line;
-	t_list	*iteri;
+	char		*new_line;
+	t_list_gnl	*iteri;
 
 	iteri = *list;
 	if (ft_memorymanager((void *)&new_line, (ft_listlen(*list) * BUFFER_SIZE)))
@@ -84,14 +84,14 @@ char	*ft_reader(int fd)
 int	ft_memorymanager(void **value, int size)
 {
 	int		i;
-	t_list	*iteri;
+	t_list_gnl	*iteri;
 
 	if (size == 0)
 	{
 		while (*value)
 		{
-			iteri = *(t_list **)value;
-			*(t_list **)value = iteri->next;
+			iteri = *(t_list_gnl **)value;
+			*(t_list_gnl **)value = iteri->next;
 			free(iteri->text);
 			free(iteri);
 		}

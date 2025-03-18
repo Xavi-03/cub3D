@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../includes/get_next_line.h"
 
-char	*ft_strchr(char *str)
+char	*ft_strchr_gnl(char *str)
 {
 	int	i;
 
@@ -40,18 +40,18 @@ char	*ft_trimmer(char *str)
 	return (str);
 }
 
-t_list	*ft_addnode(t_list **list, char *text)
+t_list_gnl	*ft_addnode(t_list_gnl **list, char *text)
 {
-	t_list	*iteri;
-	t_list	*new_node;
-	char	*new_text;
+	t_list_gnl	*iteri;
+	t_list_gnl	*new_node;
+	char		*new_text;
 
 	iteri = *list;
 	if (!text)
 		return (NULL);
 	if (ft_memorymanager((void *)&new_text, BUFFER_SIZE))
 		return (NULL);
-	new_node = malloc(sizeof(t_list));
+	new_node = malloc(sizeof(t_list_gnl));
 	if (!new_node)
 		return (NULL);
 	ft_strcpy(new_text, text);
@@ -66,7 +66,7 @@ t_list	*ft_addnode(t_list **list, char *text)
 	return (new_node);
 }
 
-int	ft_listlen(t_list *list)
+int	ft_listlen(t_list_gnl *list)
 {
 	int	i;
 
@@ -99,5 +99,5 @@ char	*ft_strcpy(char *dst, char *src)
 	while (src[j])
 		dst[i++] = src[j++];
 	dst[i] = '\0';
-	return (ft_strchr(src));
+	return (ft_strchr_gnl(src));
 }
