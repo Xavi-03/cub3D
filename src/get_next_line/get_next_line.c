@@ -83,7 +83,7 @@ char	*ft_reader(int fd)
 
 int	ft_memorymanager(void **value, int size)
 {
-	int		i;
+	int			i;
 	t_list_gnl	*iteri;
 
 	if (size == 0)

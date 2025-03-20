@@ -72,7 +72,6 @@ void	gfree(void *ptr)
 		if (mem_node->mem == ptr)
 		{
 			free(ptr);
-			ptr = NULL;
 			mem_node->mem = NULL;
 			if (prev_node)
 				prev_node->next = mem_node->next;
@@ -83,12 +82,13 @@ void	gfree(void *ptr)
 		mem_node = mem_node->next;
 	}
 }
+//ptr = NULL
 
 void	*galloc(size_t size)
 {
 	static t_galloc	*l_galloc = NULL;
 	t_galloc		*n_galloc;
-	void		*mem;
+	void			*mem;
 
 	if (!l_galloc)
 	{

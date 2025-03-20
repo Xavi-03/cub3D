@@ -2,26 +2,24 @@
 
 t_map	*init_map(char *file)
 {
-	int i;
-	t_map *map;
+	int		i;
+	t_map	*map;
 
 	map = galloc(sizeof(t_map));
 	map->file_name = file;
-
 	map->fd_file = -1;
-
+	map->player_direction = '\0';
+	map->y_player = -1;
+	map->x_player = -1;
 	map->map_arr = NULL;
-
-	map->texture = galloc(5 * sizeof(char *));
+	map->map_height = 0;
+	map->map_width = 0;
 	i = -1;
-	while(++i < 5)
+	while (++i < 5)
 		map->texture[i] = NULL;
-	map->floor = galloc(3 * sizeof(int *));
 	i = -1;
 	while (++i < 3)
 		map->floor[i] = -1;
-
-	map->ceiling = galloc(3 * sizeof(int *));
 	i = -1;
 	while (++i < 3)
 		map->floor[i] = -1;
